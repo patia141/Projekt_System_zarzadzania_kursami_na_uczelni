@@ -1,3 +1,2 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-//hhhhkkkkkk
+﻿using System;
+using System.Collections.Generic;

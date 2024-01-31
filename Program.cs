@@ -49,19 +49,19 @@ namespace System_zarzadzania_kursami_na_uczelni
                 Console.WriteLine("\nWybierz jedną z opcji:");
                 Console.WriteLine("1. Dodaj studenta");
                 Console.WriteLine("2. Znajdź studenta");
-                Console.WriteLine("3. Aktualizuj studenta");
+                Console.WriteLine("3. Aktualizuj dane studenta");
                 Console.WriteLine("4. Usuń studenta");
                 Console.WriteLine("5. Wyświetl studentów");
 
                 Console.WriteLine("6. Dodaj nauczyciela");
                 Console.WriteLine("7. Znajdź nauczyciela");
-                Console.WriteLine("8. Aktualizuj nauczyciela");
+                Console.WriteLine("8. Aktualizuj dane nauczyciela");
                 Console.WriteLine("9. Usuń nauczyciela");
                 Console.WriteLine("10. Wyświetl nauczycieli");
 
                 Console.WriteLine("11. Dodaj kurs");
                 Console.WriteLine("12. Znajdź kurs");
-                Console.WriteLine("13. Aktualizuj kurs");
+                Console.WriteLine("13. Aktualizuj informacje o kursie");
                 Console.WriteLine("14. Usuń kurs");
                 Console.WriteLine("15. Wyświetl listę kursów");
 

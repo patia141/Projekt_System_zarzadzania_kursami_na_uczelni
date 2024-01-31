@@ -18,12 +18,9 @@ namespace Projekt_system_zarzadzania_kursami_na_uczelni
         {
             if (Waliduj(student))
             {
-                student.StudentId = studenci.Count + 1;
+                int maxId = studenci.Any() ? studenci.Max(s => s.StudentId) : 0;
+                student.StudentId = maxId + 1;
                 studenci.Add(student);
-            }
-            else
-            {
-                throw new Exception("Nieprawidłowe dane studenta.");
             }
         }
 

@@ -21,10 +21,6 @@ namespace Projekt_system_zarzadzania_kursami_na_uczelni
                 kurs.KursId = kursy.Count + 1;
                 kursy.Add(kurs);
             }
-            else
-            {
-                throw new Exception("Nieprawidłowe dane.");
-            }
         }
 
         public Kurs Pobierz(int kursId)

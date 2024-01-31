@@ -8,29 +8,45 @@ namespace System_zarzadzania_kursami_na_uczelni
     {
         static void Main()
         {
-
-            //menu
-            var student = new Student();
-            var nauczyciel = new Nauczyciel();
-            var kurs = new Kurs();
-            int maxLiczbaStudentow;
+            OperacjeStudenci operStud = new OperacjeStudenci();
+            OperacjeNauczyciele operNaucz = new OperacjeNauczyciele();
+            OperacjeKursy operKurs = new OperacjeKursy();
             bool zakoncz = false;
 
-            /*
+            //dodanie przykladowych danych
             Student student1 = new Student { Imie = "Jan", Nazwisko = "Kowalski" };
-            student1.Dodaj(student1);
+            operStud.Dodaj(student1);
             Student student2 = new Student { Imie = "Patrycja", Nazwisko = "Lipa" };
-            student2.Dodaj(student2);
-            Kurs kurs1 = new Kurs { NazwaKursu = "Matematyka", MaxLiczbaStudentow = 30 };
-            kurs1.Dodaj(kurs1);
-            Kurs kurs2 = new Kurs { NazwaKursu = "Angielski", MaxLiczbaStudentow = 12 };
-            kurs2.Dodaj(kurs2);
-            UsunKurs(kurs);
-            WyswietlKursy(Kurs.kursy); */
+            operStud.Dodaj(student2);
+            Student student3 = new Student { Imie = "Kamil", Nazwisko = "Zachodni" };
+            operStud.Dodaj(student3);
+            Student student4 = new Student { Imie = "Tadeusz", Nazwisko = "Szczotka" };
+            operStud.Dodaj(student4);
 
+            Nauczyciel nauczyciel1 = new Nauczyciel { Imie = "Piotr", Nazwisko = "Wisniewski" };
+            operNaucz.Dodaj(nauczyciel1);
+            Nauczyciel nauczyciel2 = new Nauczyciel { Imie = "Ewa", Nazwisko = "Buniowska" };
+            operNaucz.Dodaj(nauczyciel2);
+            Nauczyciel nauczyciel3 = new Nauczyciel { Imie = "Stanisław", Nazwisko = "Kolorowy" };
+            operNaucz.Dodaj(nauczyciel3);
+            Nauczyciel nauczyciel4 = new Nauczyciel { Imie = "Wiktoria", Nazwisko = "Żuraw" };
+            operNaucz.Dodaj(nauczyciel4);
+
+            Kurs kurs1 = new Kurs { NazwaKursu = "Matematyka", MaxLiczbaStudentow = 30 };
+            operKurs.Dodaj(kurs1);
+            Kurs kurs2 = new Kurs { NazwaKursu = "Angielski", MaxLiczbaStudentow = 12 };
+            operKurs.Dodaj(kurs2);
+            Kurs kurs3 = new Kurs { NazwaKursu = "Geografia", MaxLiczbaStudentow = 20 };
+            operKurs.Dodaj(kurs3);
+            Kurs kurs4 = new Kurs { NazwaKursu = "Fizyka", MaxLiczbaStudentow = 25 };
+            operKurs.Dodaj(kurs4);
+
+            //menu
+            Console.WriteLine("System zarządzania kursami na uczelni");
             
             do
             {
+                Console.WriteLine("\nWybierz jedną z opcji:");
                 Console.WriteLine("1. Dodaj studenta");
                 Console.WriteLine("2. Znajdź studenta");
                 Console.WriteLine("3. Aktualizuj studenta");
@@ -49,165 +65,91 @@ namespace System_zarzadzania_kursami_na_uczelni
                 Console.WriteLine("14. Usuń kurs");
                 Console.WriteLine("15. Wyświetl listę kursów");
 
-                Console.WriteLine("0. Zakończ program");
+                Console.WriteLine("0. Zakończ program\n");
                 string wybor = Console.ReadLine();
 
                 switch(wybor)
                 {
                     case "1":
-                        DodajStudenta(student);
+                        DodajStudenta(operStud);
                         break;
                     case "2":
-                        PobierzDaneStudenta(student);
+                        PobierzDaneStudenta(operStud);
                         break;
                     case "3":
-                        AktualizujDaneStudenta(student);
+                        AktualizujStudenta(operStud);
                         break;
                     case "4":
-                        UsunStudenta(student);
+                        UsunStudenta(operStud);
                         break;
                     case "5":
-                        WyswietlListeStudentow(Student.studenci);
+                        operStud.WyswietlStudentow();
                         break;
                     case "6":
-                        DodajNauczyciela(nauczyciel);
+                        DodajNauczyciela(operNaucz);
                         break;
                     case "7":
-                        PobierzNauczyciela(nauczyciel);
+                        PobierzDaneNauczyciela(operNaucz);
                         break;
                     case "8":
-                        AktualizujNauczyciela(nauczyciel);
+                        AktualizujNauczyciela(operNaucz);
                         break;
                     case "9":
-                        UsunNauczyciela(nauczyciel);
+                        UsunNauczyciela(operNaucz);
                         break;
                     case "10":
-                        WyswietlNauczycieli(Nauczyciel.nauczyciele);
+                        operNaucz.WyswietlNauczycieli();
                         break;
                     case "11":
-                        DodajKurs(kurs);
+                        DodajKurs(operKurs);
                         break;
                     case "12":
-                        PobierzKurs(kurs);
+                        PobierzKurs(operKurs);
                         break;
                     case "13":
-                        AktualizujKurs(kurs);
+                        AktualizujKurs(operKurs);
                         break;
                     case "14":
-                        UsunKurs(kurs);
+                        UsunKurs(operKurs);
                         break;
                     case "15":
-                        WyswietlKursy(Kurs.kursy);
+                        operKurs.WyswietlListeKursow();
                         break;
                     case "0":
                         zakoncz = true;
                         break;
                     default:
-                        Console.WriteLine("Nieprawidłowy wybór. Spróbuj ponownie.");
+                        Console.WriteLine("Nieprawidłowy wybór. Spróbuj ponownie.\n");
                         break;
 
 
                 }
 
             } while (!zakoncz); 
-
-            /*
-            //studenci
-            Student student1 = new Student { Imie = "Jan", Nazwisko = "Kowalski" };
-            student1.Dodaj(student1);
-
-            Student student2 = new Student { Imie = "Patrycja", Nazwisko = "Lipa" };
-            student2.Dodaj(student2);
-
-            Student student3 = new Student { Imie = "Karolina", Nazwisko = "Karp" };
-            student3.Dodaj(student3);
-
-            Student student4 = new Student { Imie = "Tomasz", Nazwisko = "Jezioro" };
-            student4.Dodaj(student4);
-
-            student2.Usun(student2.StudentId);
-
-            Student studentToUpdate = new Student { StudentId = 1, Imie = "Janusz", Nazwisko = "Nowak" };
-
-            try
-            {
-                student1.Aktualizuj(studentToUpdate);
-                Console.WriteLine("Dane studenta zaktualizowane.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Błąd podczas aktualizacji danych studenta: {ex.Message}");
-            }
-
-            Student studentDoZnalezienia = student2.Pobierz(2);
-            if (studentDoZnalezienia != null)
-            {
-                Console.WriteLine($"\nStudent o ID {studentDoZnalezienia.StudentId} nadal znajduje się na liście studentów");
-            }
-            else
-            {
-                Console.WriteLine("\nNie znaleziono studenta o podanym ID");
-            }
-
-            Console.WriteLine("Studenci po operacjach CRUD:");
-            WyswietlInformacjeOStudentach(Student.studenci);
-
-            //kursy
-            Kurs kurs1 = new Kurs { NazwaKursu = "Matematyka", MaxLiczbaStudentow = 30 };
-            kurs1.Dodaj(kurs1);
-            Kurs kurs2 = new Kurs { NazwaKursu = "Angielski", MaxLiczbaStudentow = 12 };
-            kurs2.Dodaj(kurs2);
-            Kurs kurs3 = new Kurs { NazwaKursu = "Fizyka", MaxLiczbaStudentow = 25 };
-            kurs3.Dodaj(kurs3);
-            Kurs kurs4 = new Kurs { NazwaKursu = "Muzyka", MaxLiczbaStudentow = 20 };
-            kurs4.Dodaj(kurs4);
-
-            Kurs kursDoZnalezienia = kurs3.Pobierz(3);
-            if (kursDoZnalezienia != null)
-            {
-                Console.WriteLine($"Kurs o numerze ID {kursDoZnalezienia.KursId} istnieje");
-            }
-            else
-            {
-                Console.WriteLine("Kurs o podanym ID nie istnieje");
-            }
-
-            Kurs kursAktualiz = new Kurs { KursId = 2, MaxLiczbaStudentow = 13, NazwaKursu = "Geografia" };
-            kurs2.Aktualizuj(kursAktualiz);
-
-            kurs4.Usun(kurs4.KursId);
-
-            //nauczyciele
-            Nauczyciel nauczyciel1 = new Nauczyciel { Imie = "Piotr", Nazwisko = "Wisniewski" };
-            nauczyciel1.Dodaj(nauczyciel1);
-            Nauczyciel nauczyciel2 = new Nauczyciel { Imie = "Zenek", Nazwisko = "Martyniuk" };
-            nauczyciel2.Dodaj(nauczyciel2);
-            Nauczyciel nauczyciel3 = new Nauczyciel { Imie = "Karolina", Nazwisko = "Bocian" };
-            nauczyciel3.Dodaj(nauczyciel3);
-            Nauczyciel nauczyciel4 = new Nauczyciel { Imie = "Alina", Nazwisko = "Sum" };
-            nauczyciel4.Dodaj(nauczyciel4); */
-
         }
 
+        //funkcje
         //studenci
-        static void DodajStudenta(Student student)
+        static void DodajStudenta(OperacjeStudenci operStud)
         {
+            Student student = new Student();
+
             Console.Write("Podaj imię studenta: ");
             student.Imie = Console.ReadLine();
 
             Console.Write("Podaj nazwisko studenta: ");
             student.Nazwisko = Console.ReadLine();
 
-            student.Dodaj(student);
+            operStud.Dodaj(student);
             Console.WriteLine("Dodano studenta!");
 
-        }
-        static void PobierzDaneStudenta(Student student)
+        } 
+        static void PobierzDaneStudenta(OperacjeStudenci operStud)
         {
             Console.Write("Podaj ID studenta do pobrania: ");
             if (int.TryParse(Console.ReadLine(), out int studentId))
             {
-                var pobranyStudent = student.Pobierz(studentId);
+                var pobranyStudent = operStud.Pobierz(studentId);
                 if (pobranyStudent != null)
                 {
                     Console.WriteLine($"ID: s{pobranyStudent.StudentId}, Imię i nazwisko: {pobranyStudent.Imie} {pobranyStudent.Nazwisko}");
@@ -218,22 +160,31 @@ namespace System_zarzadzania_kursami_na_uczelni
                 }
             }
         }
-
-        static void AktualizujDaneStudenta(Student student)
+        static void AktualizujStudenta(OperacjeStudenci operStud)
         {
             Console.Write("Podaj ID studenta do aktualizacji: ");
             if (int.TryParse(Console.ReadLine(), out int studentId))
             {
-                var pobranyStudent = student.Pobierz(studentId);
+                var pobranyStudent = operStud.Pobierz(studentId);
                 if (pobranyStudent != null)
                 {
                     Console.Write("Nowe imię studenta: ");
-                    pobranyStudent.Imie = Console.ReadLine();
+                    string noweImie = Console.ReadLine();
 
                     Console.Write("Nowe nazwisko studenta: ");
-                    pobranyStudent.Nazwisko = Console.ReadLine();
+                    string noweNazwisko = Console.ReadLine();
 
-                    student.Aktualizuj(pobranyStudent);
+                    if (!string.IsNullOrWhiteSpace(noweImie))
+                    {
+                        pobranyStudent.Imie = noweImie;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(noweNazwisko))
+                    {
+                        pobranyStudent.Nazwisko = noweNazwisko;
+                    }
+
+                    operStud.Aktualizuj(pobranyStudent); 
                     Console.WriteLine("Zaktualizowano dane studenta.");
                 }
                 else
@@ -241,44 +192,58 @@ namespace System_zarzadzania_kursami_na_uczelni
                     Console.WriteLine("Student o podanym ID nie istnieje.");
                 }
             }
+            else
+            {
+                Console.WriteLine("Wprowadzono błędny format danych.");
+            }
         }
-
-        static void UsunStudenta(Student student)
+        static void UsunStudenta(OperacjeStudenci operStud)
         {
             Console.Write("Podaj ID studenta do usunięcia: ");
             if (int.TryParse(Console.ReadLine(), out int studentId))
             {
-                student.Usun(studentId);
-                Console.WriteLine("Usunięto studenta o ID: s" + studentId);
+                bool czyUsunieto = false;
+                operStud.Usun(studentId);
+
+                var usunietyStudent = operStud.Pobierz(studentId);
+                czyUsunieto = usunietyStudent == null;
+
+                if (czyUsunieto)
+                {
+                    Console.WriteLine("Usunięto studenta o ID: s" + studentId);
+                }
+                else
+                {
+                    Console.WriteLine("Student o podanym ID nie istnieje.");
+                }
             }
-        }
-        
-        static void WyswietlListeStudentow(List<Student> studenci)
-        {
-            foreach (var student in studenci)
+            else
             {
-                Console.WriteLine($"ID: s{student.StudentId}, Imię i nazwisko: {student.Imie} {student.Nazwisko}");
+                Console.WriteLine("Wprowadzono błędne dane.");
             }
         }
 
         //nauczyciele
-        static void DodajNauczyciela(Nauczyciel nauczyciel)
+        static void DodajNauczyciela(OperacjeNauczyciele operNaucz)
         {
+            Nauczyciel nauczyciel = new Nauczyciel();
+
             Console.Write("Podaj imię nauczyciela: ");
             nauczyciel.Imie = Console.ReadLine();
 
             Console.Write("Podaj nazwisko nauczyciela: ");
             nauczyciel.Nazwisko = Console.ReadLine();
 
-            nauczyciel.Dodaj(nauczyciel);
+            operNaucz.Dodaj(nauczyciel);
             Console.WriteLine("Dodano nauczyciela!");
+
         }
-        static void PobierzNauczyciela(Nauczyciel nauczyciel)
+        static void PobierzDaneNauczyciela(OperacjeNauczyciele operNaucz)
         {
             Console.Write("Podaj ID nauczyciela do pobrania: ");
             if (int.TryParse(Console.ReadLine(), out int nauczycielId))
             {
-                var pobranyNauczyciel = nauczyciel.Pobierz(nauczycielId);
+                var pobranyNauczyciel = operNaucz.Pobierz(nauczycielId);
                 if (pobranyNauczyciel != null)
                 {
                     Console.WriteLine($"ID: n{pobranyNauczyciel.NauczycielId}, Imię i nazwisko: {pobranyNauczyciel.Imie} {pobranyNauczyciel.Nazwisko}");
@@ -289,21 +254,31 @@ namespace System_zarzadzania_kursami_na_uczelni
                 }
             }
         }
-        static void AktualizujNauczyciela(Nauczyciel nauczyciel)
+        static void AktualizujNauczyciela(OperacjeNauczyciele operNaucz)
         {
             Console.Write("Podaj ID nauczyciela do aktualizacji: ");
             if (int.TryParse(Console.ReadLine(), out int nauczycielId))
             {
-                var pobranyNauczyciel = nauczyciel.Pobierz(nauczycielId);
+                var pobranyNauczyciel = operNaucz.Pobierz(nauczycielId);
                 if (pobranyNauczyciel != null)
                 {
                     Console.Write("Nowe imię nauczyciela: ");
-                    pobranyNauczyciel.Imie = Console.ReadLine();
+                    string noweImie = Console.ReadLine();
 
                     Console.Write("Nowe nazwisko nauczyciela: ");
-                    pobranyNauczyciel.Nazwisko = Console.ReadLine();
+                    string noweNazwisko = Console.ReadLine();
 
-                    nauczyciel.Aktualizuj(pobranyNauczyciel);
+                    if (!string.IsNullOrWhiteSpace(noweImie))
+                    {
+                        pobranyNauczyciel.Imie = noweImie;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(noweNazwisko))
+                    {
+                        pobranyNauczyciel.Nazwisko = noweNazwisko;
+                    }
+
+                    operNaucz.Aktualizuj(pobranyNauczyciel);
                     Console.WriteLine("Zaktualizowano dane nauczyciela.");
                 }
                 else
@@ -311,48 +286,62 @@ namespace System_zarzadzania_kursami_na_uczelni
                     Console.WriteLine("Nauczyciel o podanym ID nie istnieje.");
                 }
             }
+            else
+            {
+                Console.WriteLine("Wprowadzono błędny format danych.");
+            }
         }
-        static void UsunNauczyciela(Nauczyciel nauczyciel)
+        static void UsunNauczyciela(OperacjeNauczyciele operNaucz)
         {
             Console.Write("Podaj ID nauczyciela do usunięcia: ");
             if (int.TryParse(Console.ReadLine(), out int nauczycielId))
             {
-                nauczyciel.Usun(nauczycielId);
-                Console.WriteLine("Usunięto nauczyciela o ID: n" + nauczycielId);
-            }
-        }
-        static void WyswietlNauczycieli(List<Nauczyciel> nauczyciele)
-        {
-            foreach (var nauczyciel in nauczyciele)
-            {
-                Console.WriteLine($"ID: n{nauczyciel.NauczycielId}, Imię i nazwisko: {nauczyciel.Imie} {nauczyciel.Nazwisko}");
-            }
-        }
+                bool czyUsunieto = false;
+                operNaucz.Usun(nauczycielId);
 
+                var usunietyNauczyciel = operNaucz.Pobierz(nauczycielId);
+                czyUsunieto = usunietyNauczyciel == null;
+
+                if (czyUsunieto)
+                {
+                    Console.WriteLine("Usunięto nauczyciela o ID: n" + nauczycielId);
+                }
+                else
+                {
+                    Console.WriteLine("Nauczyciel o podanym ID nie istnieje.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Wprowadzono błędny format danych.");
+            }
+        }
 
         //kursy
-        static void DodajKurs(Kurs kurs)
+        static void DodajKurs(OperacjeKursy operKurs)
         {
+            Kurs kurs = new Kurs();
+
             Console.Write("Podaj nazwę kursu: ");
             kurs.NazwaKursu = Console.ReadLine();
 
-            Console.Write("Podaj maksymalną liczbę osób: ");
+            Console.Write("Podaj maksymalną liczbę studentów: ");
             if (int.TryParse(Console.ReadLine(), out int maxLiczbaStudentow))
             {
                 kurs.MaxLiczbaStudentow = maxLiczbaStudentow;
-                kurs.Dodaj(kurs);
+                operKurs.Dodaj(kurs);
                 Console.WriteLine("Dodano nowy kurs!");
             }
         }
-        static void PobierzKurs(Kurs kurs)
+        static void PobierzKurs(OperacjeKursy operKurs)
         {
             Console.Write("Podaj ID kursu do pobrania: ");
             if (int.TryParse(Console.ReadLine(), out int kursId))
             {
-                var pobranyKurs = kurs.Pobierz(kursId);
+                var pobranyKurs = operKurs.Pobierz(kursId);
                 if (pobranyKurs != null)
                 {
-                    Console.WriteLine($"ID: k{pobranyKurs.KursId}, Nazwa: {pobranyKurs.NazwaKursu}, Maksymalna liczba osób: {pobranyKurs.MaxLiczbaStudentow}");
+                    Console.WriteLine($"ID: k{pobranyKurs.KursId}, Nazwa: {pobranyKurs.NazwaKursu}, Maksymalna liczba studentów: {pobranyKurs.MaxLiczbaStudentow}");
                 }
                 else
                 {
@@ -360,12 +349,12 @@ namespace System_zarzadzania_kursami_na_uczelni
                 }
             }
         }
-        static void AktualizujKurs(Kurs kurs)
+        static void AktualizujKurs(OperacjeKursy operKurs)
         {
             Console.Write("Podaj ID kursu do aktualizacji: ");
             if (int.TryParse(Console.ReadLine(), out int kursId))
             {
-                var pobranyKurs = kurs.Pobierz(kursId);
+                var pobranyKurs = operKurs.Pobierz(kursId);
                 if (pobranyKurs != null)
                 {
                     Console.Write("Nowa nazwa kursu: ");
@@ -375,7 +364,7 @@ namespace System_zarzadzania_kursami_na_uczelni
                     if (int.TryParse(Console.ReadLine(), out int maxLiczbaStudentow))
                     {
                         pobranyKurs.MaxLiczbaStudentow = maxLiczbaStudentow;
-                        kurs.Aktualizuj(pobranyKurs);
+                        operKurs.Aktualizuj(pobranyKurs);
                         Console.WriteLine("Zaktualizowano dane kursu.");
                     }
                 }
@@ -385,20 +374,25 @@ namespace System_zarzadzania_kursami_na_uczelni
                 }
             }
         }
-        static void UsunKurs(Kurs kurs)
+        static void UsunKurs(OperacjeKursy operKurs)
         {
             Console.Write("Podaj ID kursu do usunięcia: ");
             if (int.TryParse(Console.ReadLine(), out int kursId))
             {
-                kurs.Usun(kursId);
-                Console.WriteLine("Usunięto kurs o ID: k" + kursId);
-            }
-        }
-        static void WyswietlKursy(List<Kurs> kursy)
-        {
-            foreach (var kurs in kursy)
-            {
-                Console.WriteLine($"ID: k{kurs.KursId}, Nazwa kursu: {kurs.NazwaKursu}, Maksymalna liczba studentów: {kurs.MaxLiczbaStudentow}");
+                bool czyUsunieto = false;
+                operKurs.Usun(kursId);
+
+                var usunietyKurs = operKurs.Pobierz(kursId);
+                czyUsunieto = usunietyKurs == null;
+
+                if (czyUsunieto)
+                {
+                    Console.WriteLine("Usunięto kurs o ID: k" + kursId);
+                }
+                else
+                {
+                    Console.WriteLine("Kurs o podanym ID nie istnieje.");
+                }
             }
         }
     }
